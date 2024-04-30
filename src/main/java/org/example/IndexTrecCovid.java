@@ -43,7 +43,7 @@ public class IndexTrecCovid {
             switch (args[i]) {
                 case "-openMode":
                     openmode = args[++i];
-                    if (openmode == null) {
+                    if (openmode == null){
                         throw new IllegalArgumentException("openmode not valid: " + args[i] + "\n" + usage);
                     }
                     break;
