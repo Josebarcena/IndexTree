@@ -141,7 +141,6 @@ public class IndexTrecCovid {
             BufferedReader br = new BufferedReader(new FileReader(corpusFile));
             String line;
             IndexWriter iWriter = new IndexWriter(dir, iwc);
-
             while ((line = br.readLine()) != null) {
                 // Convertir cada línea a un JsonNode
                 JsonNode jsonNode = objectMapper.readTree(line);
