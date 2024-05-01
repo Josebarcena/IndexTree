@@ -40,6 +40,7 @@ public class Compare {
 
 
         File primerCsv = new File(results1);
+        System.out.println(primerCsv);
         FileReader lectorP = new FileReader(primerCsv);
         FileReader lectorPl = new FileReader(primerCsv);
         BufferedReader bufPl = new BufferedReader(lectorPl);

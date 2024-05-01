@@ -18,7 +18,7 @@ import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.queryparser.classic.QueryParser;
 
 import java.io.*;
-import java.nio.file.Path;
+        import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class TrainingTestTrecCovid {
@@ -97,9 +97,9 @@ public class TrainingTestTrecCovid {
         ArrayList<String> subQueries = new ArrayList<>();
 
         while ((line = bufferedReader.readLine()) != null) {
-                // Convertir cada línea a un JsonNode
-                JsonNode jsonNode = objectMapper.readTree(line);
-                subQueries.add(jsonNode.path("metadata").path("query").asText());
+            // Convertir cada línea a un JsonNode
+            JsonNode jsonNode = objectMapper.readTree(line);
+            subQueries.add(jsonNode.path("metadata").path("query").asText());
         }
 
         //Creamos el CSV de TRAIN
@@ -146,7 +146,6 @@ public class TrainingTestTrecCovid {
 
                     if (trainrelevants.contains(id.toLowerCase())) {
                         relevantesA++;
-                        System.out.println(relevantesA);
                         suMetr += relevantesA / (j + 1);
                         if (rr == 0) {
                             rr = 1.0 / (j + 1);
