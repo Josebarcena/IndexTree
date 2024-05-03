@@ -6,8 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Date;
-import java.util.Objects;
-import java.util.stream.Collectors;
+
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -43,7 +42,7 @@ public class IndexTrecCovid {
             switch (args[i]) {
                 case "-openMode":
                     openmode = args[++i];
-                    if (openmode == null){
+                    if (openmode == null) {
                         throw new IllegalArgumentException("openmode not valid: " + args[i] + "\n" + usage);
                     }
                     break;
@@ -141,6 +140,7 @@ public class IndexTrecCovid {
             BufferedReader br = new BufferedReader(new FileReader(corpusFile));
             String line;
             IndexWriter iWriter = new IndexWriter(dir, iwc);
+
             while ((line = br.readLine()) != null) {
                 // Convertir cada línea a un JsonNode
                 JsonNode jsonNode = objectMapper.readTree(line);

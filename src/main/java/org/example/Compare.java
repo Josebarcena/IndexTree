@@ -9,7 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Compare {
+public class Compare{
     public static void main(String[] args) throws IOException {
         String usage = "-test [t|wilcoxon alpha] -result [primer_csv segundo_csv] " + "\n\n";
         String testType = null;
@@ -40,13 +40,12 @@ public class Compare {
 
 
         File primerCsv = new File(results1);
-        System.out.println(primerCsv);
         FileReader lectorP = new FileReader(primerCsv);
         FileReader lectorPl = new FileReader(primerCsv);
         BufferedReader bufPl = new BufferedReader(lectorPl);
         BufferedReader bufP = new BufferedReader(lectorP);
         long lineasPrimero = bufPl.lines().count();
-        double[] atribPrimero = new double[5000];
+        double[] atribPrimero = new double[(int) (lineasPrimero - 2)];
         ArrayList<String> elem = new ArrayList<>();
         bufP.readLine();//para no añadir la primera linea
         for (int i = 1; i < lineasPrimero - 1; ++i) {
@@ -62,8 +61,9 @@ public class Compare {
         FileReader lectorSl = new FileReader(segundoCsv);
         BufferedReader bufSl = new BufferedReader(lectorSl);
         long lineasSegundo =  bufSl.lines().count();
+
         BufferedReader bufS = new BufferedReader(lectorS);
-        double[] atribSegundo = new double[5000];
+        double[] atribSegundo = new double[(int) lineasSegundo - 2];
         bufS.readLine();
         ArrayList<String> elem2 = new ArrayList<>();
         for (int i = 1; i < lineasSegundo - 1; ++i) {
@@ -72,13 +72,14 @@ public class Compare {
         for (int j = 0; j < elem2.size(); ++j){
             atribSegundo[j] = Double.parseDouble(elem2.get(j));
         }
+
+
         if (testType.equals("t")) {
-            TTest ttest = new TTest();
             double test = new TTest().pairedTTest(atribPrimero, atribSegundo);
             if (alpha < test)
-                System.out.println("No satisfactorio: "+ ttest.pairedTTest(atribPrimero, atribSegundo));
+                System.out.println("No satisfactorio: "+ test);
             else
-                System.out.println("Satisfactorio, comparacion t: " + ttest.pairedTTest(atribPrimero, atribSegundo));
+                System.out.println("Satisfactorio, comparacion t: " + test);
         } else {
             WilcoxonSignedRankTest wilc = new WilcoxonSignedRankTest();
             double test = wilc.wilcoxonSignedRank(atribPrimero, atribSegundo);

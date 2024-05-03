@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.similarities.BM25Similarity;
@@ -18,7 +17,7 @@ import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.queryparser.classic.QueryParser;
 
 import java.io.*;
-        import java.nio.file.Path;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class TrainingTestTrecCovid {
@@ -97,9 +96,9 @@ public class TrainingTestTrecCovid {
         ArrayList<String> subQueries = new ArrayList<>();
 
         while ((line = bufferedReader.readLine()) != null) {
-            // Convertir cada línea a un JsonNode
-            JsonNode jsonNode = objectMapper.readTree(line);
-            subQueries.add(jsonNode.path("metadata").path("query").asText());
+                // Convertir cada línea a un JsonNode
+                JsonNode jsonNode = objectMapper.readTree(line);
+                subQueries.add(jsonNode.path("metadata").path("query").asText());
         }
 
         //Creamos el CSV de TRAIN
